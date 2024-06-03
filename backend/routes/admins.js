@@ -1,27 +1,27 @@
 const express = require('express')
+const { 
+    createAdmin,
+    getAdmin,
+    getAdmins,
+    deleteAdmin,
+    updateAdmin
+ } = require('../controllers/adminController')
 
 const router = express.Router()
 
-// GET all admins
-router.get('/', (req, res) => {
-    res.json({mssg: 'GET all admins'})
-})
+// GET all Admins
+router.get('/', getAdmins)
 
-// GET a single admin
-router.get('/:id', (req, res) => {
-    res.json({mssg: 'GET a single admin'})
-})
+// GET a single Admin
+router.get('/:id', getAdmin)
 
-// POST a new admin
-router.post('/', (req, res) => {
-    res.json({mssg:'POST a new admin'})
-})
+// POST a new Admin
+router.post('/', createAdmin)
 
-// DELETE a admin
-router.delete('/:id', (req, res) => {
-    res.json({mssg: 'DELETE a admin'})
-})
+// DELETE a Admin
+router.delete('/:id', deleteAdmin)
 
-// PATCH an admin
+// DELETE a Admin
+router.patch('/:id', updateAdmin)
 
 module.exports = router

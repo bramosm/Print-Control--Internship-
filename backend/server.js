@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const printRoutes = require('./routes/prints')
 const printerRoutes = require('./routes/printers')
 const userRoutes = require('./routes/users')
+const adminRoutes = require('./routes/admins')
+
 
 // express app
 const app = express()
@@ -20,6 +22,8 @@ app.use((req, res, next) => {
 app.use('/api/prints',printRoutes)
 app.use('/api/printers',printerRoutes)
 app.use('/api/users',userRoutes)
+app.use('/api/admins',adminRoutes)
+
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)

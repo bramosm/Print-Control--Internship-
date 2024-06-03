@@ -16,8 +16,8 @@ const userSchema = new Schema({
         required: false
     },
     impresiones:{
-        type: Number,
-        required: true
+        type: Object,
+        required: false
     }
 }, {timestamps: true})
 

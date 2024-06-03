@@ -3,12 +3,12 @@ const mongoose = require('mongoose')
 
 //GET all Admins
 const getAdmins = async (req, res) => {
-    const Admins = await Admin.find({}).sort({createdAt: -1})
+    const admins = await Admin.find({}).sort({createdAt: -1})
 
     res.status(200).json(admins)
 }
 
-//GET a single Admin
+//GET an single Admin
 const getAdmin = async (req, res) => {
     const { id } = req.params
 
@@ -26,21 +26,20 @@ const getAdmin = async (req, res) => {
 }
 
 
-//POST a new Admin
+//POST an new Admin
 const createAdmin = async (req, res) => {
-    const {nombreDocumento, nombreUsuario, nombreImpresora, fechaImpresion, cantidadHojas} = req.body
+    const {nombreAdmin, passAdmin, emailAdmin} = req.body
 
     // add Admin to db
     try {
-        const admin = await Admin.create({nombreDocumento, nombreUsuario, nombreImpresora, 
-            fechaImpresion, cantidadHojas})
+        const admin = await Admin.create({nombreAdmin, passAdmin, emailAdmin})
         res.status(200).json(admin)
     } catch(error){
         res.status(400).json({error: error.message})
     }
 }
 
-//DELELE a Admin
+//DELETE an Admin
 const deleteAdmin = async (req, res) => {
     const { id } = req.params
     if (!mongoose.Types.ObjectId.isValid(id)){
@@ -55,9 +54,31 @@ const deleteAdmin = async (req, res) => {
     res.status(200).json(admin)
 }
 
+// PATCH an Admin
+const updateAdmin = async (req,res) => {
+    const { id } = req.params
+    if (!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'no such Admin id'})
+    }
+
+    const admin = await Admin.findOneAndUpdate({_id: id}, {
+        ...req.body
+    })
+
+    if (!Admin){
+        return res.status(400).json({error: 'no such Admin'})
+    }
+
+    res.status(200).json(admin)
+}
+
+
+
+
 module.exports ={
     createAdmin,
     getAdmins,
     getAdmin,
-    deleteAdmin
+    deleteAdmin,
+    updateAdmin
 }
