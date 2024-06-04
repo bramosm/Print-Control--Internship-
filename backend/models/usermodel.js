@@ -3,15 +3,15 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
-    nombreUser: {
+    nombreUsuario: {
         type: String,
         required: true
     },
-    emailUser: {
+    emailUsuario: {
         type: String,
         required: true
     },
-    impresionesporquincena:{
+    impresionescontador:{
         type: Number,
         required: false
     },

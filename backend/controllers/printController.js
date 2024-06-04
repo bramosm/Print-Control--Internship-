@@ -28,11 +28,11 @@ const getPrint = async (req, res) => {
 
 //POST a new print
 const createPrint = async (req, res) => {
-    const {nombreDocumento, nombreUsuario, nombreImpresora, fechaImpresion, cantidadHojas} = req.body
+    const {nombreDocumento, nombreUsuario, nombreCliente, nombreImpresora, fechaImpresion, cantidadHojas} = req.body
 
     // add print to db
     try {
-        const print = await Print.create({nombreDocumento, nombreUsuario, nombreImpresora, 
+        const print = await Print.create({nombreDocumento, nombreUsuario, nombreCliente, nombreImpresora, 
             fechaImpresion, cantidadHojas})
         res.status(200).json(print)
     } catch(error){

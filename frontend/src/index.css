@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.scrollable-list-container {
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto;  /* Enable vertical scrolling */
+  }
+  
+  .list-item {
+    /* Style your list items */
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }

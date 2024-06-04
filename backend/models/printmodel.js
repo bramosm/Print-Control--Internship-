@@ -11,6 +11,10 @@ const printSchema = new Schema({
         type: String,
         required: true
     },
+    nombreCliente: {
+        type: String,
+        required: true
+    },
     nombreImpresora: {
         type: String,
         required: true
@@ -21,7 +25,7 @@ const printSchema = new Schema({
     },
     cantidadHojas:{
         type: Number,
-        required: true
+        required: false
     }
 }, {timestamps: true})
 
