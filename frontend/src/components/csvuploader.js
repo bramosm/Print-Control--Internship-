@@ -50,8 +50,10 @@ function CSVUploader() {
   };
 
   return (
+  
+  
     <div className="csv-uploader-container">
-      <h2>CSV Data</h2> 
+     <h2 className='h2'>CSV Data</h2>
 
       {isLoading ? ( 
         <div className="loader-container">
@@ -61,7 +63,7 @@ function CSVUploader() {
       ) : error ? (
         <p className="error-message">Error: {error}</p>
       ) : (
-        <div className="table-container">
+        <div class="flex items-center" className="table-container">
           {csvData.length > 0 ? ( // Check csvData length before rendering
             <table>
               <thead>
@@ -87,27 +89,27 @@ function CSVUploader() {
 
         
           {/* Render CSVLink only if csvData has data */}
-          
-          
+
+          <div class="flex flex-col relative top-5">
+           {csvData.length > 0 && ( 
+               
+                 <CSVLink 
+                   class=""
+                   data={csvData} 
+                   filename={csvFilename} 
+                   onClick={handleDownload}
+                   className="download-button" 
+                 >
+                   Download CSV
+                 </CSVLink>
+           )}
+           </div>
           
         </div>
-      )}
 
-      <div class="flex flex-row flex grow relative">
-      {csvData.length > 0 && ( 
-          
-            <CSVLink 
-              class=""
-              data={csvData} 
-              filename={csvFilename} 
-              onClick={handleDownload}
-              className="download-button" 
-            >
-              Download CSV
-            </CSVLink>
       )}
-      </div>
     </div>
+     
   );
 }
 
