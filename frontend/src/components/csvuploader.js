@@ -4,93 +4,113 @@ import { CSVLink } from 'react-csv';
 import './csvuploader.css';
 
 function CSVUploader() {
-  const [csvData, setCsvData] = useState([]); // Initialize as an empty array
-  const [isLoading, setIsLoading] = useState(false);
+  const [csvData, setCsvData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); 
   const [error, setError] = useState(null);
   const [csvFilename, setCsvFilename] = useState('downloaded_data.csv');
 
   useEffect(() => {
-    // Reset csvData when the component unmounts
-    return () => {
-      setCsvData([]); 
+    const fetchCsvData = async () => {
+      try {
+        const response = await fetch('/getcsv'); 
+        if (!response.ok) {
+          throw new Error('Could not fetch CSV file');
+        }
+
+        const csvDataBuffer = await response.text(); // Get CSV data as text
+
+        Papa.parse(csvDataBuffer, {
+          header: true,
+          complete: (results) => {
+            setCsvData(results.data);
+            setIsLoading(false); 
+          },
+          error: (err) => {
+            setError(err.message);
+            setIsLoading(false);
+          },
+        });
+      } catch (err) {
+        setError(err.message);
+        setIsLoading(false);
+      }
     };
-  }, []);
 
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
+    fetchCsvData();
 
-    if (file) {
-      setIsLoading(true);
-
-      Papa.parse(file, {
-        header: true,
-        complete: (results) => {
-          setIsLoading(false);
-          setCsvData(results.data);
-        },
-        error: (err) => {
-          setIsLoading(false);
-          setError(err.message);
-        },
-      });
-    }
-  };
+    return () => {
+      setCsvData([]);
+      setIsLoading(false);
+      setError(null);
+    };
+  }, []); 
 
   const handleDownload = () => {
-    setCsvFilename('my_custom_filename.csv');
+    setCsvFilename('Registros');
   };
 
   return (
     <div className="csv-uploader-container">
-      <h2>CSV Uploader</h2>
+      <h2>CSV Data</h2> 
 
-      <div className="file-input">
-        <input type="file" accept=".csv" onChange={handleFileUpload} id="file-upload" />
-        <label htmlFor="file-upload">Choose a CSV file</label>
-      </div>
-
-      {isLoading && (
+      {isLoading ? ( 
         <div className="loader-container">
           <div className="loader"></div>
           <p>Loading...</p>
         </div>
-      )}
-      {error && <p className="error-message">Error: {error}</p>}
-
-      {/* Conditional Rendering of CSVLink */}
-      {csvData && csvData.length > 0 && ( // Check if csvData is available and not empty
+      ) : error ? (
+        <p className="error-message">Error: {error}</p>
+      ) : (
         <div className="table-container">
-          <table>
-            <thead>
-              <tr>
-                {Object.keys(csvData[0]).map((header) => (
-                  <th key={header}>{header}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {csvData.map((row, index) => (
-                <tr key={index}>
-                  {Object.values(row).map((value, index) => (
-                    <td key={index}>{value}</td>
+          {csvData.length > 0 ? ( // Check csvData length before rendering
+            <table>
+              <thead>
+                <tr>
+                  {Object.keys(csvData[0]).map((header) => (
+                    <th key={header}>{header}</th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {csvData.map((row, index) => (
+                  <tr key={index}>
+                    {Object.values(row).map((value, index) => (
+                      <td key={index}>{value}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>No data available.</p> // Message if csvData is empty
+          )}
+
+        
+          {/* Render CSVLink only if csvData has data */}
+          
+          
+          
         </div>
       )}
-      <CSVLink 
-            data={csvData} 
-            filename={csvFilename} 
-            onClick={handleDownload}
-            className="download-button" 
-          >
-            Download CSV
-          </CSVLink>
+
+      <div class="flex flex-row flex grow relative">
+      {csvData.length > 0 && ( 
+          
+            <CSVLink 
+              class=""
+              data={csvData} 
+              filename={csvFilename} 
+              onClick={handleDownload}
+              className="download-button" 
+            >
+              Download CSV
+            </CSVLink>
+      )}
+      </div>
     </div>
   );
 }
 
 export default CSVUploader;
+
 
