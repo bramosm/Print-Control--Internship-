@@ -11,13 +11,13 @@ const PrinterSchema = new Schema({
         type: String,
         required: true
     },
-    impresionquincenaImpresora: {
+    totalPaginasImpresasIm: {
         type: Number,
-        required: false
+        required: true
     },
-    impresionesImpresora:{
-        type: Object,
-        required: false
+    promedioPaginasPorTrabajoIm:{
+        type: Number,
+        required: true
     }
 }, {timestamps: true})
 

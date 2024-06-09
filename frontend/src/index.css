@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.html {
+  background-color: gray;
+}
+
 .scrollable-list-container {
     max-height: 300px; /* Adjust as needed */
     overflow-y: auto;  /* Enable vertical scrolling */

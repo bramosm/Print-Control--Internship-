@@ -1,25 +1,23 @@
 const express = require('express')
+const { 
+    createPrinter,
+    getPrinter,
+    getPrinters,
+    deletePrinter
+ } = require('../controllers/printerController')
 
 const router = express.Router()
 
-// GET all printers
-router.get('/', (req, res) => {
-    res.json({mssg: 'GET all printers'})
-})
+// GET all Printers
+router.get('/', getPrinters)
 
-// GET a single printer
-router.get('/:id', (req, res) => {
-    res.json({mssg: 'GET a single printer'})
-})
+// GET a single Printer
+router.get('/:id', getPrinter)
 
-// POST a new printer
-router.post('/', (req, res) => {
-    res.json({mssg:'POST a new printer'})
-})
+// POST a new Printer
+router.post('/', createPrinter)
 
-// DELETE a printer
-router.delete('/:id', (req, res) => {
-    res.json({mssg: 'DELETE a printer'})
-})
+// DELETE a Printer
+router.delete('/:id', deletePrinter)
 
 module.exports = router

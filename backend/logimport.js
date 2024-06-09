@@ -107,6 +107,90 @@ async function processLogData() {
   }
 }
 
+// 6. Fetch and Process Users Data
+try {
+  const usersDataBuffer = await new Promise((resolve, reject) => {
+    ftp.get('DomainUsers.json', (err, socket) => {
+      if (err) reject(err);
+      let fileData = '';
+      socket.on('data', (d) => (fileData += d.toString()));
+      socket.on('close', (hadErr) =>
+        hadErr ? reject(hadErr) : resolve(fileData)
+      );
+      socket.resume();
+    });
+  });
+
+  // Handle potentially invalid JSON
+  let usersData = [];
+  try {
+    // Remove trailing commas, newlines, AND extra spaces at the beginning
+    let cleanUsersDataBuffer = usersDataBuffer.replace(/^[\s\r\n]+/, '');
+    cleanUsersDataBuffer = cleanUsersDataBuffer.replace(/,\s*$/, '');
+    cleanUsersDataBuffer = cleanUsersDataBuffer.replace(/[\n\r]+/g, '');
+    usersData = JSON.parse(cleanUsersDataBuffer);
+  } catch (parseError) {
+    console.error('Error parsing DomainUsers.json:', parseError);
+    return; 
+  }
+
+  // Update/Insert Users in MongoDB 
+  for (let userData of usersData) { // Use let here to declare a new variable for each user
+    const updatedUserData = { ...userData };  
+
+    await User.updateOne(
+      { nombreUsuario: updatedUserData.nombreUsuario }, 
+      updatedUserData, 
+      { upsert: true } 
+    );
+  }
+  console.log('Users data updated/inserted successfully');
+} catch (err) {
+  console.error('Error fetching or processing user data:', err);
+}
+
+// 7. Fetch and Process Printers Data
+try {
+  const printersDataBuffer = await new Promise((resolve, reject) => {
+    ftp.get('InstalledPrinters.json', (err, socket) => {
+      if (err) reject(err);
+      let fileData = '';
+      socket.on('data', (d) => (fileData += d.toString()));
+      socket.on('close', (hadErr) =>
+        hadErr ? reject(hadErr) : resolve(fileData)
+      );
+      socket.resume();
+    });
+  });
+
+  // Handle potentially invalid JSON
+  let printersData = [];
+  try {
+    // Remove trailing commas, newlines, and extra spaces at the beginning
+    let cleanPrintersDataBuffer = printersDataBuffer.replace(/^[\s\r\n]+/, '');
+    cleanPrintersDataBuffer = cleanPrintersDataBuffer.replace(/,\s*$/, '');
+    cleanPrintersDataBuffer = cleanPrintersDataBuffer.replace(/[\n\r]+/g, '');
+    printersData = JSON.parse(cleanPrintersDataBuffer);
+  } catch (parseError) {
+    console.error('Error parsing InstalledPrinters.json:', parseError);
+    return;
+  }
+
+  // Update/Insert Printers in MongoDB
+  for (let printerData of printersData) { // Use 'let' here
+    const updatedPrinterData = { ...printerData }; // Create a copy
+
+    await Printer.updateOne(
+      { nombreImpresora: updatedPrinterData.nombreImpresora },
+      updatedPrinterData, 
+      { upsert: true }
+    );
+  }
+  console.log('Printers data updated/inserted successfully');
+} catch (err) {
+  console.error('Error fetching or processing printer data:', err);
+}
+
  // Fetch and Process CSV File (Directly)
  try {
   const csvDataBuffer = await new Promise((resolve, reject) => {
@@ -144,89 +228,7 @@ async function processLogData() {
     },
   });
 
-   // 6. Fetch and Process Users Data
-   try {
-    const usersDataBuffer = await new Promise((resolve, reject) => {
-      ftp.get('DomainUsers.json', (err, socket) => {
-        if (err) reject(err);
-        let fileData = '';
-        socket.on('data', (d) => (fileData += d.toString()));
-        socket.on('close', (hadErr) =>
-          hadErr ? reject(hadErr) : resolve(fileData)
-        );
-        socket.resume();
-      });
-    });
-
-    // Handle potentially invalid JSON
-    let usersData = [];
-    try {
-      // Remove trailing commas, newlines, AND extra spaces at the beginning
-      let cleanUsersDataBuffer = usersDataBuffer.replace(/^[\s\r\n]+/, '');
-      cleanUsersDataBuffer = cleanUsersDataBuffer.replace(/,\s*$/, '');
-      cleanUsersDataBuffer = cleanUsersDataBuffer.replace(/[\n\r]+/g, '');
-      usersData = JSON.parse(cleanUsersDataBuffer);
-    } catch (parseError) {
-      console.error('Error parsing DomainUsers.json:', parseError);
-      return; 
-    }
-
-    // Update/Insert Users in MongoDB 
-    for (let userData of usersData) { // Use let here to declare a new variable for each user
-      const updatedUserData = { ...userData };  
-
-      await User.updateOne(
-        { nombreUsuario: updatedUserData.nombreUsuario }, 
-        updatedUserData, 
-        { upsert: true } 
-      );
-    }
-    console.log('Users data updated/inserted successfully');
-  } catch (err) {
-    console.error('Error fetching or processing user data:', err);
-  }
-
-  // 7. Fetch and Process Printers Data
-  try {
-    const printersDataBuffer = await new Promise((resolve, reject) => {
-      ftp.get('InstalledPrinters.json', (err, socket) => {
-        if (err) reject(err);
-        let fileData = '';
-        socket.on('data', (d) => (fileData += d.toString()));
-        socket.on('close', (hadErr) =>
-          hadErr ? reject(hadErr) : resolve(fileData)
-        );
-        socket.resume();
-      });
-    });
-
-    // Handle potentially invalid JSON
-    let printersData = [];
-    try {
-      // Remove trailing commas, newlines, and extra spaces at the beginning
-      let cleanPrintersDataBuffer = printersDataBuffer.replace(/^[\s\r\n]+/, '');
-      cleanPrintersDataBuffer = cleanPrintersDataBuffer.replace(/,\s*$/, '');
-      cleanPrintersDataBuffer = cleanPrintersDataBuffer.replace(/[\n\r]+/g, '');
-      printersData = JSON.parse(cleanPrintersDataBuffer);
-    } catch (parseError) {
-      console.error('Error parsing InstalledPrinters.json:', parseError);
-      return;
-    }
-
-    // Update/Insert Printers in MongoDB
-    for (let printerData of printersData) { // Use 'let' here
-      const updatedPrinterData = { ...printerData }; // Create a copy
-
-      await Printer.updateOne(
-        { nombreImpresora: updatedPrinterData.nombreImpresora },
-        updatedPrinterData, 
-        { upsert: true }
-      );
-    }
-    console.log('Printers data updated/inserted successfully');
-  } catch (err) {
-    console.error('Error fetching or processing printer data:', err);
-  }
+   
 
 } catch (error) {
   console.error('Error processing FTP data:', error);

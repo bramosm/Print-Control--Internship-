@@ -21,7 +21,7 @@ const UserCRUD = () => {
     }, [])
 
     return(
-        <div className="home" class='bg-gray-100'>
+        <div className="usercrud">
             <div className='users'>
                 {users && users.map((user) => (
                     <UserDetails key={user._id} user = { user }/>

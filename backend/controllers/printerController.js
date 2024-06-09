@@ -28,11 +28,11 @@ const getPrinter = async (req, res) => {
 
 //POST an new Printer
 const createPrinter = async (req, res) => {
-    const {nombreImpresora, ipImpresora, impresionquincenaImpresora,impresionesImpresora} = req.body
+    const {nombreImpresora, ipImpresora, totalPaginasImpresasIm, promedioPaginasPorTrabajoIm} = req.body
 
     // add Printer to db
     try {
-        const printer = await Printer.create({nombreImpresora, ipImpresora, impresionquincenaImpresora,impresionesImpresora})
+        const printer = await Printer.create({nombreImpresora, ipImpresora, totalPaginasImpresasIm,promedioPaginasPorTrabajoIm})
         res.status(200).json(printer)
     } catch(error){
         res.status(400).json({error: error.message})

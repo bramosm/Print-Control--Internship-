@@ -3,6 +3,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
+    nombreDadoU: {
+        type: String,
+        required: true
+    },
     nombreUsuario: {
         type: String,
         required: true
@@ -11,13 +15,13 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    impresionescontador:{
+    totalPaginasImpresas:{
         type: Number,
-        required: false
+        required: true
     },
-    impresiones:{
-        type: Object,
-        required: false
+    promedioPaginasPorTrabajo:{
+        type: Number,
+        required: true
     }
 }, {timestamps: true})
 
