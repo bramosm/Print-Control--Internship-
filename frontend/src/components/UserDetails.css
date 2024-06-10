@@ -1,0 +1,18 @@
+.user-details {
+    margin-bottom: 20px; /* Add spacing between user details cards */
+    padding: 15px;
+  }
+  
+  .user-details h1 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+  
+  .user-details p {
+    margin-bottom: 3px; /* Adjust spacing between lines as needed */
+  }
+  
+  .user-details strong {
+    font-weight: 600; /* Slightly bolder font for the labels */
+  }
+  

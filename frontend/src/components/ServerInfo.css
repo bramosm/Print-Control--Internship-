@@ -1,0 +1,41 @@
+/* Overall Container */
+.server-info-container {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.server-info-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Table Styling */
+.server-info-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.server-info-table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.table-label {
+  font-weight: bold;
+}
+
+/* Loading Message */
+.loading-message {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}

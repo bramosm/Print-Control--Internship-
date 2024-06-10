@@ -13,11 +13,11 @@ const PrinterSchema = new Schema({
     },
     totalPaginasImpresasIm: {
         type: Number,
-        required: true
+        required: false
     },
     promedioPaginasPorTrabajoIm:{
         type: Number,
-        required: true
+        required: false
     }
 }, {timestamps: true})
 

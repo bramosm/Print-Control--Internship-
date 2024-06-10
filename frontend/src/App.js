@@ -8,6 +8,9 @@ import UsrCRUD from './pages/UsrCRUD.js';
 import PrinterCRUD from './pages/PrinterCRUD.js';
 import CSVUploader from './components/csvuploader.js';
 import Navbar from './components/Navbar'
+import ServerInfo from './pages/ServerInfo.js'
+import AdminCRUD from './pages/AdminCRUD.js';
+
 
 function App() {
   return (
@@ -39,6 +42,14 @@ function App() {
             <Route
             path='/csv-uploader'
             element = {<CSVUploader />}
+            />
+            <Route 
+            path="/serverinfo" 
+            element={<ServerInfo />} 
+            />
+            <Route 
+            path="/AdminCRUD" 
+            element={<AdminCRUD />} 
             />
             </Route>
           </Routes>

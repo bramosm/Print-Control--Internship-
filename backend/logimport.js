@@ -2,6 +2,7 @@ const fs = require('fs');
 const Print = require('./models/printmodel');
 const Printer = require('./models/printermodel'); 
 const User = require('./models/usermodel');
+const Server = require('./models/servermodel')
 const mongoose = require('mongoose');
 const path = require('path');
 const JSFtp = require("jsftp"); //
@@ -190,6 +191,49 @@ try {
 } catch (err) {
   console.error('Error fetching or processing printer data:', err);
 }
+
+    // 8. Fetch and Process Server Information
+    try {
+      const serverInfoBuffer = await new Promise((resolve, reject) => {
+        ftp.get('ServerInfo.json', (err, socket) => {
+          if (err) reject(err);
+          let fileData = '';
+          socket.on('data', (d) => (fileData += d.toString()));
+          socket.on('close', (hadErr) => hadErr ? reject(hadErr) : resolve(fileData));
+          socket.resume();
+        });
+      });
+
+      // Handle potentially invalid JSON
+      let serverInfoData = [];
+      try {
+        // Remove trailing commas, newlines, and extra spaces at the beginning or end
+        let cleanServerInfoBuffer = serverInfoBuffer.trim(); // Trim whitespace
+        cleanServerInfoBuffer = cleanServerInfoBuffer.replace(/,\s*$/, ''); // Trailing commas
+        cleanServerInfoBuffer = cleanServerInfoBuffer.replace(/[\n\r]+/g, ''); // Newlines
+        serverInfoData = JSON.parse(cleanServerInfoBuffer);
+      } catch (parseError) {
+        console.error('Error parsing ServerInfo.json:', parseError, cleanServerInfoBuffer); // Log the error and the cleaned buffer
+        return; 
+      }
+
+      // Update/Insert Server Information in MongoDB
+      if (serverInfoData && Object.keys(serverInfoData).length > 0) { // Check if the object is not empty
+        await Server.updateOne(
+          { nombreServidor: serverInfoData.nombreServidor },
+          serverInfoData,
+          { upsert: true }
+        );
+      } else {
+        console.warn('ServerInfo.json is empty or invalid.');
+      }
+
+      console.log('Server info updated/inserted successfully');
+
+    } catch (err) {
+      console.error('Error fetching or processing server info:', err);
+    }
+
 
  // Fetch and Process CSV File (Directly)
  try {

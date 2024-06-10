@@ -1,0 +1,102 @@
+/* Form Overlay */
+.entity-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+/* Form Container */
+.entity-form-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 500px; /* Adjust as needed */
+  width: 90%; /* Responsive width */
+}
+
+/* Form Title */
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem; /* Larger font for the title */
+}
+
+/* Form */
+.entity-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; 
+  font-size: 16px; /* Adjust font size as needed */
+}
+
+/* Form Buttons */
+.form-buttons {
+  display: flex;
+  justify-content: center; /* Center buttons */
+  margin-top: 20px;
+}
+
+.form-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease; /* Add smooth transition for hover effect */
+}
+
+.form-buttons button[type="submit"] {
+  background-color: #007bff; /* Primary color */
+  color: white;
+  margin-right: 10px;
+}
+
+.form-buttons button[type="submit"]:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.form-buttons button[type="button"] {
+  background-color: #6c757d; /* Secondary color */
+  color: white;
+}
+
+.form-buttons button[type="button"]:hover {
+  background-color: #5a6268; /* Darker shade on hover */
+}
+
+/* Error Message Styling */
+.error-message {
+  color: red;
+  font-size: 14px; /* Adjust font size as needed */
+  margin-top: 5px;
+}
+
+/* Add more styles for specific fields or elements as needed */

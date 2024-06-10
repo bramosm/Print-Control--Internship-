@@ -17,11 +17,11 @@ const userSchema = new Schema({
     },
     totalPaginasImpresas:{
         type: Number,
-        required: true
+        required: false
     },
     promedioPaginasPorTrabajo:{
         type: Number,
-        required: true
+        required: false
     }
 }, {timestamps: true})
 
