@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Form.css';
 
-function UserForm({ user, onClose, fetchUsers, setError }) {
+function UserForm({ user = {}, onClose, fetchUsers, setError }) {
+  console.log('User object in UserForm:', user); // Check if user is undefined
+
   const [formData, setFormData] = useState({
     nombreUsuario: user?.nombreUsuario || '',
     nombreDadoU: user?.nombreDadoU || '',

@@ -3,6 +3,8 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const Admin = require('./models/adminmodel')
+const User = require('./models/usermodel');
+const Printer = require('./models/printermodel')
 const printRoutes = require('./routes/prints')
 const printerRoutes = require('./routes/printers')
 const userRoutes = require('./routes/users')
@@ -92,21 +94,27 @@ app.post('/api/users', async (req, res) => {
   }
 });
 
-// UPDATE a user by ID
 app.put('/api/users/:id', async (req, res) => {
   try {
+    console.log("Trying to update user with ID:", req.params.id);
+    console.log("Data received:", req.body);
+
     const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true, 
+      new: true,
     });
+
     if (!updatedUser) {
-      return res.status(404).json({ error: 'User not found' }); 
+      console.error('User not found for update:', req.params.id);
+      return res.status(404).json({ error: 'User not found' });
     }
+
+    console.log('User updated successfully:', updatedUser);
     res.json(updatedUser);
   } catch (error) {
-    res.status(400).json({ error: error.message }); 
+    console.error('Error updating user:', error);
+    res.status(400).json({ error: error.message });
   }
 });
-
 // DELETE a user by ID
 app.delete('/api/users/:id', async (req, res) => {
   try {
