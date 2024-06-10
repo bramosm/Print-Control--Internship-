@@ -7,7 +7,9 @@ const PrintDetails = ({ print }) => {
                         <div class="text-center sm:text-left">
                             <h1 class="text-gray-800 font-bold tracking-wider">{print.nombreDocumento}</h1>
                                 <p class="text-gray-500 font-semibold"><strong class='text-gray-800 font-bold'>Usuario: </strong>{print.nombreUsuario}</p>
+                                <p class="text-gray-500 font-semibold"><strong class='text-gray-800 font-bold'>Cliente: </strong>{print.nombreCliente}</p>
                                 <p class="text-gray-500 font-semibold"><strong class='text-gray-800 font-bold'>Impresora: </strong>{print.nombreImpresora}</p>
+                                <p class="text-gray-500 font-semibold"><strong class='text-gray-800 font-bold'>Páginas Impresas: </strong>{print.paginasImpresas}</p>
                                 <p class="text-gray-500 font-semibold"><strong class='text-gray-800 font-bold'>Fecha de Impresión: </strong>{print.fechaImpresion}</p>
                                 <p class="text-gray-500 font-semibold"><strong class='text-gray-800 font-bold'>Fecha de inserción a la base de datos: </strong>{print.createdAt}</p>
                         </div>

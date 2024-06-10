@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../auth'
+import './Navbar.css'
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const handleOpenCSV = () => {
     navigate('/csv-uploader'); 
@@ -17,12 +21,29 @@ const Navbar = () => {
   const serverinfo = () => {
     navigate('/serverinfo')
   }
+  const admmincrud = () => {
+    navigate ('/AdminCRUD')
+  }
+  const handleLogout = () => {
+    logout(); 
+    navigate('/login');
+  };
+  
 
     return( 
-  <header class="h-16 w-full flex items-center relative justify-end px-5 space-x-10 bg-gray-800">
-    <button onClick={backtohome} class="flex flex-row">
-    <h class="lg:text 5x1 bg-gray-800 text-white font-bold leading-light 3x1">Print Control</h>
+  <header class="h-16 w-full flex items-center relative justify-start px-5 space-x-10 bg-gray-800">
+      <div className="h-10 w-10 text-white flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white hover:duration-300 hover:ease-linear focus:bg-white">
+      <button onClick={backtohome} >
+        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"/>
+      </svg>
+
     </button>
+    </div>
+  <div class="flex flex-row flex grow"></div>
+
+    <div class="flex flex-row items-end justify-end">
+
     <div class="flex flex-row bg-gray-800 text-white items-end">
       <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
                <button onClick={userlist}>
@@ -59,6 +80,8 @@ const Navbar = () => {
                 </button>
               </div>
     </div>
+    </div>
+
     <div class="flex flex-shrink-0 items-center space-x-4 text-white">
       
       
@@ -67,14 +90,51 @@ const Navbar = () => {
         <div class="text-sm font-regular">Administrador</div>
       </div>
       
-      <div class="h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400">
-        <img class="rounded-full" src="https://scontent.fccs1-2.fna.fbcdn.net/v/t39.30808-6/340806879_1352510465333142_7958739702558969872_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=SoWPwoqXeikQ7kNvgG8_0og&_nc_ht=scontent.fccs1-2.fna&oh=00_AYAt94K1w9igObjfJtuePXvtW048jDQtiadoRy3KhlQkjg&oe=665E9330" alt="Logo"></img>
+      <div className="relative inline-block text-left">
+        <div>
+          <button
+            type="button"
+            onClick={() => setIsOpen(!isOpen)}
+            className="h-10 w-10 flex items-center justify-center rounded-full cursor-pointer hover:text-gray-800 hover:bg-white hover:duration-300 hover:ease-linear focus:bg-white"
+            id="options-menu"
+          >
+            {/* Use your profile image here */}
+            <img src="https://scontent.fccs1-2.fna.fbcdn.net/v/t39.30808-6/340806879_1352510465333142_7958739702558969872_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=SoWPwoqXeikQ7kNvgG8_0og&_nc_ht=scontent.fccs1-2.fna&oh=00_AYAt94K1w9igObjfJtuePXvtW048jDQtiadoRy3KhlQkjg&oe=665E9330" 
+                 alt="Logo" 
+                 className="rounded-full w-full h-full object-cover"
+            />
+          </button>
+        </div>
+
+        {isOpen && ( // Conditionally render dropdown menu
+          <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+              <button
+                type="button"
+                onClick={() => { 
+                  admmincrud()
+                  setIsOpen(false); 
+                }}
+                className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                role="menuitem"
+              >
+                Administration
+              </button>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                role="menuitem"
+              >
+                Sign out
+              </button>
+            </div>
+          </div>
+        )}
+         </div> 
       </div>
-    </div>
-  </header>
-
-
-    )
-}
+    </header>
+  );
+};
 
 export default  Navbar

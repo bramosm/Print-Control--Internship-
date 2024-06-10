@@ -96,7 +96,7 @@ async function processLogData() {
   nombreCliente: entry.nombreCliente,
   nombreImpresora: entry.nombreImpresora,
   fechaImpresion: entry.fechaImpresion,
-  // cantidadHojas: entry.cantidadHojas, // (Optional, since it's not required)
+  paginasImpresas: entry.paginasImpresas,
   }));
 
   // Insert log data into MongoDB

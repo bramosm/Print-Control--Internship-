@@ -1,11 +1,11 @@
-nombreDocumento,nombreUsuario,nombreCliente,nombreImpresora,fechaImpresion
-Imprimir documento,Administrador,\\WIN-F5LP07NP15C,printer01,2024-06-07 13:03:13
-Imprimir documento,Administrador,\\WIN-F5LP07NP15C,printer01,2024-06-07 13:02:50
-Imprimir documento,bramos,DESKTOP-IN44DSG,printer01,2024-06-06 14:28:00
-Imprimir documento,bramos,DESKTOP-IN44DSG,printer01,2024-06-04 11:25:09
-Imprimir documento,bramos,DESKTOP-IN44DSG,printer01,2024-06-04 08:11:28
-Imprimir documento,bramos,DESKTOP-IN44DSG,printer01,2024-06-04 08:00:15
-Imprimir documento,bramos,DESKTOP-IN44DSG,printer01,2024-06-03 13:08:21
-Imprimir documento,bramos,DESKTOP-IN44DSG,printer01,2024-06-03 12:53:17
-Imprimir documento,bramos,DESKTOP-IN44DSG,printer01,2024-06-03 11:17:44
-,,,,
+nombreDocumento,nombreUsuario,nombreCliente,nombreImpresora,fechaImpresion,paginasImpresas
+Imprimir documento,Administrador,\\WIN-F5LP07NP15C,printer01,2024-06-07 13:03:13,3
+Imprimir documento,Administrador,\\WIN-F5LP07NP15C,printer01,2024-06-07 13:02:50,2
+Imprimir documento,bramos,DESKTOP-IN44DSG,printer01,2024-06-06 14:28:00,2
+Imprimir documento,bramos,DESKTOP-IN44DSG,printer01,2024-06-04 11:25:09,2
+Imprimir documento,bramos,DESKTOP-IN44DSG,printer01,2024-06-04 08:11:28,3
+Imprimir documento,bramos,DESKTOP-IN44DSG,printer01,2024-06-04 08:00:15,2
+Imprimir documento,bramos,DESKTOP-IN44DSG,printer01,2024-06-03 13:08:21,2
+Imprimir documento,bramos,DESKTOP-IN44DSG,printer01,2024-06-03 12:53:17,2
+Imprimir documento,bramos,DESKTOP-IN44DSG,printer01,2024-06-03 11:17:44,4
+,,,,,

@@ -1,6 +1,8 @@
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, Outlet} from 'react-router-dom'
+import { isAuthenticated } from "./auth.js"
 
 //pages and components
+import Login from './pages/Login';
 import Home from './pages/Home.js'
 import UsrCRUD from './pages/UsrCRUD.js';
 import PrinterCRUD from './pages/PrinterCRUD.js';
@@ -14,10 +16,14 @@ function App() {
       <Navbar/>
         <div className='pages'>
           <Routes>
-            <Route
-            path='/'
-            element = {<Home />}
+          <Route
+            path='/login'
+            element = {<Login />}
             />
+            <Route element={<PrivateRoute />}>
+            <Route 
+            path="/" 
+            element={<Home />} />
             <Route
             path='/csv-uploader'
             element = {<CSVUploader />}
@@ -34,11 +40,17 @@ function App() {
             path='/csv-uploader'
             element = {<CSVUploader />}
             />
+            </Route>
           </Routes>
         </div>
       </BrowserRouter>
     </div>
   );
 }
+
+// PrivateRoute Component
+function PrivateRoute() {
+    return isAuthenticated() ? <Outlet /> : <Navigate to="/login" replace />;
+  }
 
 export default App;

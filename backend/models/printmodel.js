@@ -23,9 +23,9 @@ const printSchema = new Schema({
         type: String,
         required: true
     },
-    cantidadHojas:{
+    paginasImpresas:{
         type: Number,
-        required: false
+        required: true
     }
 }, {timestamps: true})
 
