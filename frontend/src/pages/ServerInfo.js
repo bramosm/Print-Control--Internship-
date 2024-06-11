@@ -30,7 +30,7 @@ function ServerInfo() {
 
   return (
     <div className="server-info-container">
-      <h1 className="text-2xl font-semibold mb-4">Server Information</h1>
+      <h1 className="text-2xl font-semibold mb-4">Información del Servidor</h1>
 
       {isLoading ? (
         <p className="loading-message">Loading...</p>
@@ -40,19 +40,19 @@ function ServerInfo() {
         <table className="server-info-table">
           <tbody>
             <tr>
-              <td className="table-label">Server Name:</td>
+              <td className="table-label">Nombre del Servidor:</td>
               <td>{server.nombreServidor}</td>
             </tr>
             <tr>
-              <td className="table-label">Host Machine:</td>
+              <td className="table-label">Máquina Anfitriona:</td>
               <td>{server.maquinaAnfitriona}</td>
             </tr>
             <tr>
-              <td className="table-label">IP Addresses:</td>
+              <td className="table-label">Direcciones IP:</td>
               <td>{server.direccionesIP}</td>
             </tr>
             <tr>
-              <td className="table-label">Domain:</td>
+              <td className="table-label">Dominio:</td>
               <td>{server.dominio}</td>
             </tr>
           </tbody>

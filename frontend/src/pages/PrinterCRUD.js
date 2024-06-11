@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PrinterDetails from '../components/PrinterDetails';
+import PrinterList from '../components/PrinterList';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import '../components/PrinterCRUD.css';
 
@@ -43,7 +43,7 @@ function PrinterCRUD() {
           {/* Printer List Section */}
           <div className="printers-list">
             {printers.map((printer) => (
-              <PrinterDetails key={printer._id} printer={printer} />
+              <PrinterList key={printer._id} printer={printer} />
             ))}
           </div>
 

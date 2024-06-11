@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import UserDetails from '../components/UserDetails';
+import UserList from '../components/UserList';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'; // Import PieChart from Recharts
 import '../components/UserCRUD.css';
 
@@ -44,7 +44,7 @@ function UserCRUD() {
           {/* User List Section */}
           <div className="users-list">
             {users.map((user) => (
-              <UserDetails key={user._id} user={user} />
+              <UserList key={user._id} user={user} />
             ))}
           </div>
 

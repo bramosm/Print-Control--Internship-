@@ -59,7 +59,7 @@ app.get('/api/servers', async (req, res) => {
 
 app.get('/getcsv', async (req, res) => {
     const csvFilePath = path.join(__dirname, csvFilesDirectory, 'PrintLogs.csv');
-    await processLogData();
+    //await processLogData();
 
     fs.access(csvFilePath, fs.constants.F_OK, (err) => {
         if (err) {
@@ -328,7 +328,7 @@ mongoose.connect(process.env.MONGO_URI)
     // listen for requests
 app.listen(process.env.PORT, () => {
     console.log('connected to db & listening on port', process.env.PORT)
-    processLogData();
+    //processLogData();
 })
 })
 .catch((error) => {
