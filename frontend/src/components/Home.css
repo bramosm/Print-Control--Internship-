@@ -10,6 +10,12 @@
   margin-bottom: 20px; /* Add spacing below the print logs section */
 }
 
+/* Print Logs Section */
+.prints-section h2 {
+  margin-bottom: 20px; /* Add spacing below the print logs section */
+}
+
+
 .prints-container {
   overflow-y: auto; /* Enable vertical scrolling */
   max-height: 400px; /* Set maximum height for scrolling (adjust as needed) */
@@ -20,7 +26,7 @@
 }
 
 .stats-section h2 {
-  margin-bottom: 10px; 
+  margin-bottom: 5px; 
   text-align: center; /* Center the title */
 }
 

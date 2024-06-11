@@ -45,7 +45,7 @@ function Home() {
       ) : (
         <div className="home-content-column">
           <div className="prints-section">
-            <h2 style={{ textAlign: 'center', alignItems: 'center' }}>Print Logs</h2>
+            <h2 style={{ textAlign: 'center', alignItems: 'center' }}>Registros de Impresión</h2>
             <div className='prints-container'>
               {prints && prints.map((print) => (
                 <PrintDetails key={print._id} print={print} />
