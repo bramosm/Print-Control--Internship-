@@ -1,14 +1,18 @@
 /* Overall Container */
 .printercrud {
-  display: flex;     
+  display: flex;
+  flex-direction: column; /* Change to column layout */
   padding: 20px;
 }
 
 /* Printer List Section */
 .printers-list {
-  flex: 1;          
-  min-width: 250px; 
-  max-width: 400px; 
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 400px; /* Set maximum height for scrolling (adjust as needed) */
+  margin-bottom: 20px; /* Add spacing below the printer list */
+  border: 1px solid #ddd;
+  border-radius: 8px;  
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
 }
 
 /* Stats Section */
@@ -22,6 +26,7 @@
 /* Additional Styling (as needed) */
 .printercrud h2 {
   margin-bottom: 10px; 
+  text-align: center; /* Center the title */
 }
 
 .error-message {

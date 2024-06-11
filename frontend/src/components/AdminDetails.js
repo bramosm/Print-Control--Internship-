@@ -10,8 +10,8 @@ const AdminDetails = ({ admin, onUpdate, onDelete }) => {
       {/* Add other relevant admin details */}
 
       <div>
-        <button onClick={() => onUpdate(admin)}>Edit</button>
-        <button onClick={() => onDelete('admins', admin._id)} className="delete-button">Delete</button>
+        <button onClick={() => onUpdate(admin)}>Editar</button>
+        <button onClick={() => onDelete('admins', admin._id)} className="delete-button">Eliminar</button>
       </div>
     </div>
   );

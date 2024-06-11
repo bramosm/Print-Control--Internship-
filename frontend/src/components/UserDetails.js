@@ -16,8 +16,8 @@ const UserDetails = ({ user, onUpdate, onDelete }) => {
       </p>
       {/* Add any other user details you want to display */}
       <div>
-        <button onClick={() => onUpdate(user)}>Edit</button>
-        <button onClick={() => onDelete('users', user._id)} className="delete-button">Delete</button>
+        <button onClick={() => onUpdate(user)}>Editar</button>
+        <button onClick={() => onDelete('users', user._id)} className="delete-button">Eliminar</button>
       </div>
     </div>
   );

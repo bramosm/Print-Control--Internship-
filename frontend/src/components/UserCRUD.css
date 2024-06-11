@@ -1,38 +1,40 @@
 /* Overall Container */
 .usercrud {
-    display: flex;     /* Use Flexbox for layout */
-    padding: 20px;
-  }
-  
-  /* User List Section */
-  .users-list {
-    flex: 1;          /* Allow the list to grow and take available space */
-    min-width: 250px; /* Ensure a minimum width for the user list */
-    max-width: 400px; /* Limit the maximum width (optional) */
-  }
-  
-  /* Stats Section */
-  .stats-section {
-    flex: 2;          /* Allow the charts to take up more space */
-    display: flex;
-    flex-direction: column; 
-    gap: 20px;
-  }
-  
-  /* Additional Styling (as needed) */
-  .usercrud h2 {
-    margin-bottom: 10px; /* Adjust spacing as needed */
-  }
-  
-  .error-message {
-    color: red;
-    margin-bottom: 10px;
-  }
-  
-  .recharts-wrapper { /* Target the Recharts chart container */
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 15px; 
-  }
-  
+  display: flex;
+  flex-direction: column; /* Change to column layout */
+  padding: 20px;
+}
+
+/* User List Section */
+.users-list {
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 400px; /* Set maximum height for scrolling (adjust as needed) */
+  margin-bottom: 20px; /* Add spacing below the user list */
+  border: 1px solid #ddd;
+  border-radius: 8px;  
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+/* Stats Section */
+.stats-section {
+  display: flex; /* Use flexbox for charts */
+  gap: 20px;    /* Add space between charts */
+}
+
+/* Additional Styling (as needed) */
+.usercrud h2 {
+  margin-bottom: 10px; 
+  text-align: center; /* Center the title */
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.recharts-wrapper { 
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px; 
+}

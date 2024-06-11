@@ -11,8 +11,8 @@ const PrinterDetails = ({ printer, onUpdate, onDelete }) => {
       {/* Add other printer details as needed */}
 
       <div>
-        <button onClick={() => onUpdate(printer)}>Edit</button>
-        <button onClick={() => onDelete('printers', printer._id)} className="delete-button">Delete</button>
+        <button onClick={() => onUpdate(printer)}>Editar</button>
+        <button onClick={() => onDelete('printers', printer._id)} className="delete-button">Eliminar</button>
       </div>
     </div>
   );

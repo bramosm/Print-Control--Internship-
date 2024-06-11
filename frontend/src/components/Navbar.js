@@ -118,7 +118,7 @@ const Navbar = () => {
                 className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 role="menuitem"
               >
-                Administration
+                Administración
               </button>
               <button
                 type="button"
@@ -126,7 +126,7 @@ const Navbar = () => {
                 className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 role="menuitem"
               >
-                Sign out
+                Cerrar Sesión
               </button>
             </div>
           </div>

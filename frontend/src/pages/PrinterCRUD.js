@@ -49,7 +49,7 @@ function PrinterCRUD() {
 
           {/* Stats Section */}
           <div className="stats-section">
-            <h2>Printer Statistics</h2>
+            <h2>Estadísticas</h2>
 
             {/* Bar Chart for Total Pages Printed */}
             <ResponsiveContainer width="100%" height={300}>

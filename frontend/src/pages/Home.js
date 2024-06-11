@@ -43,10 +43,10 @@ function Home() {
       ) : error ? (
         <p className="error-message">Error: {error}</p>
       ) : (
-        <div className="home-content">
+        <div className="home-content-column">
           <div className="prints-section">
             <h2 style={{ textAlign: 'center', alignItems: 'center' }}>Print Logs</h2>
-            <div className='prints'>
+            <div className='prints-container'>
               {prints && prints.map((print) => (
                 <PrintDetails key={print._id} print={print} />
               ))}

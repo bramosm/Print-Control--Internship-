@@ -53,7 +53,7 @@ function CSVUploader() {
   
   
     <div className="csv-uploader-container">
-     <h2 className='h2'>CSV Data</h2>
+     <h2 className='h2'>Datos Excel</h2>
 
       {isLoading ? ( 
         <div className="loader-container">
@@ -84,7 +84,7 @@ function CSVUploader() {
               </tbody>
             </table>
           ) : (
-            <p>No data available.</p> // Message if csvData is empty
+            <p>No hay datos disponibles</p> // Message if csvData is empty
           )}
 
         
@@ -100,7 +100,7 @@ function CSVUploader() {
                    onClick={handleDownload}
                    className="download-button" 
                  >
-                   Download CSV
+                   Descargar CSV
                  </CSVLink>
            )}
            </div>
